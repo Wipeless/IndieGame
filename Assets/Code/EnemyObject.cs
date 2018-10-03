@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class EnemyObject : GameplayObject {
 
+    public EnemyGunScript m_EnemyGun;
+
 	// Use this for initialization
 	void Start ()
     {
