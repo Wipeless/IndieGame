@@ -61,15 +61,17 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Code\BulletObject.cs" />
-    <Compile Include="Assets\Code\EnemyGunScript.cs" />
-    <Compile Include="Assets\Code\EnemyObject.cs" />
-    <Compile Include="Assets\Code\GameplayObject.cs" />
-    <Compile Include="Assets\Code\GroundGeneratorScript.cs" />
-    <Compile Include="Assets\Code\NeutralObject.cs" />
-    <Compile Include="Assets\Code\PlayerObject.cs" />
-    <Compile Include="Assets\Code\SceneManagerScript.cs" />
-    <Compile Include="Assets\Code\SpinScript.cs" />
+    <Compile Include="Assets\Code\Gameplay\BulletObject.cs" />
+    <Compile Include="Assets\Code\Gameplay\EnemyGunScript.cs" />
+    <Compile Include="Assets\Code\Gameplay\EnemyObject.cs" />
+    <Compile Include="Assets\Code\Gameplay\GameplayObject.cs" />
+    <Compile Include="Assets\Code\Gameplay\GroundGeneratorScript.cs" />
+    <Compile Include="Assets\Code\Gameplay\NeutralObject.cs" />
+    <Compile Include="Assets\Code\Gameplay\PlayerObject.cs" />
+    <Compile Include="Assets\Code\Gameplay\SceneManagerScript.cs" />
+    <Compile Include="Assets\Code\Gameplay\SpinScript.cs" />
+    <Compile Include="Assets\Code\UI\GameplayScreen.cs" />
+    <Compile Include="Assets\Code\UI\MainMenuScreen.cs" />
     <Reference Include="UnityEditor.StandardEvents">
       <HintPath>C:/Users/Danny/Documents/GitHub/IndieGame/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
     </Reference>
