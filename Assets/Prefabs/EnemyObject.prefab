@@ -11,6 +11,21 @@ Prefab:
   m_SourcePrefab: {fileID: 0}
   m_RootGameObject: {fileID: 1585049468290236}
   m_IsPrefabAsset: 1
+--- !u!1 &1085239220350924
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4431909059539794}
+  m_Layer: 0
+  m_Name: BulletStorage
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1373716542084814
 GameObject:
   m_ObjectHideFlags: 0
@@ -60,6 +75,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4130404119648376}
+  - {fileID: 4431909059539794}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -75,6 +91,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4003557756789802}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4431909059539794
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1085239220350924}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4003557756789802}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &23031383123336694
 MeshRenderer:
@@ -201,6 +230,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_BulletObjectPrefab: {fileID: 114707455597389670, guid: f3950de68b8809f4b920a04f3bc5e1cf,
     type: 2}
+  m_BulletStorage: {fileID: 4431909059539794}
   m_FireRange: 20
 --- !u!136 &136616051025441626
 CapsuleCollider:

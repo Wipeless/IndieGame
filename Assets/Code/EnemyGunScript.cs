@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemyGunScript : MonoBehaviour {
 
     public BulletObject m_BulletObjectPrefab;
+    public Transform m_BulletStorage;
 
     private Transform m_playerTransform;
 
@@ -51,7 +52,7 @@ public class EnemyGunScript : MonoBehaviour {
             Vector3.Distance(transform.position, m_playerTransform.position) <= m_FireRange)
         {
             m_fireRateTimer = Time.time;
-            Instantiate(m_BulletObjectPrefab, transform.position, transform.rotation);
+            Instantiate(m_BulletObjectPrefab, transform.position, transform.rotation, m_BulletStorage);
         }
     }
 }
