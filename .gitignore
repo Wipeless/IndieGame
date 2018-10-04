@@ -34,3 +34,4 @@ sysinfo.txt
 # Builds
 *.apk
 *.unitypackage
+obj/Debug/Assembly-CSharp.csproj.FileListAbsolute.txt
