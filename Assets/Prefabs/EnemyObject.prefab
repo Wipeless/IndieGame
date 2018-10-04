@@ -168,12 +168,12 @@ Rigidbody:
   m_GameObject: {fileID: 1585049468290236}
   serializedVersion: 2
   m_Mass: 0.25
-  m_Drag: 0
+  m_Drag: 5
   m_AngularDrag: 0.05
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 116
   m_CollisionDetection: 0
 --- !u!114 &114147221355760988
 MonoBehaviour:
@@ -186,7 +186,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92d5d94c3ada69a4c8f7797609e7b8a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_MovementForce: 0
+  m_MovementForce: 3
   m_EnemyGun: {fileID: 114600000540285840}
 --- !u!114 &114600000540285840
 MonoBehaviour:
@@ -201,6 +201,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_BulletObjectPrefab: {fileID: 114707455597389670, guid: f3950de68b8809f4b920a04f3bc5e1cf,
     type: 2}
+  m_FireRange: 20
 --- !u!136 &136616051025441626
 CapsuleCollider:
   m_ObjectHideFlags: 1

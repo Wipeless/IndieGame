@@ -8,12 +8,19 @@ public class EnemyGunScript : MonoBehaviour {
 
     private Transform m_playerTransform;
 
-    private const float k_fireRateLimit = 0.5f;
+    private const float k_maxFireRate = 0.6f;
+    private const float k_minFireRate = 0.3f;
+    private float m_fireRateLimit;
     private float m_fireRateTimer;
+
+    public float m_FireRange = 20;  // Fire at the player if within this range;
 
     // Use this for initialization
     void Start ()
     {
+        // Give some variety to how fast each enemy shoots
+        m_fireRateLimit = Random.Range(k_minFireRate, k_maxFireRate);
+
         // Find the player's transform
         m_playerTransform = FindObjectOfType<PlayerObject>().gameObject.transform;
 
@@ -40,7 +47,8 @@ public class EnemyGunScript : MonoBehaviour {
 
     private void HandleGunFire()
     {
-        if (Time.time - m_fireRateTimer > k_fireRateLimit)
+        if (Time.time - m_fireRateTimer > m_fireRateLimit && 
+            Vector3.Distance(transform.position, m_playerTransform.position) <= m_FireRange)
         {
             m_fireRateTimer = Time.time;
             Instantiate(m_BulletObjectPrefab, transform.position, transform.rotation);

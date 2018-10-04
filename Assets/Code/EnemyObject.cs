@@ -9,7 +9,7 @@ public class EnemyObject : GameplayObject {
 	// Use this for initialization
 	void Start ()
     {
-        base.HandleBirth();
+        HandleBirth();
     }
 
     // Update is called once per frame
@@ -35,11 +35,16 @@ public class EnemyObject : GameplayObject {
 
     protected override void HandleBirth()
     {
+        //Give the enemy a random direction to walk to forever
+        Vector2 randomDir = Random.insideUnitCircle;
+        transform.forward = new Vector3(randomDir.x, 0, randomDir.y);
+
+        base.HandleBirth();
     }
 
     protected override void HandleMovement()
     {
-
+        m_rigidBody.AddForce(transform.forward * m_MovementForce);
     }
 
     protected override void HandleDeath()
