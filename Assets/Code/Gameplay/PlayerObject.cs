@@ -7,9 +7,9 @@ public class PlayerObject : GameplayObject {
     public BulletObject m_BulletObjectPrefab;
     public Transform m_BulletSpawnPoint;
     public Transform m_BulletStorage;
+    public float m_FireRateLimit = 0.1f;
 
     private const float k_rotateSpeed = 1.5f;
-    private const float k_fireRateLimit = 0.1f;
     private float m_fireRateTimer;
     private Vector3 m_rotationYAxis = new Vector3(0, 0, 0);
 
@@ -48,7 +48,7 @@ public class PlayerObject : GameplayObject {
 
         if (Input.GetMouseButton(0))
         {
-            if (Time.time - m_fireRateTimer > k_fireRateLimit)
+            if (Time.time - m_fireRateTimer > m_FireRateLimit)
             {
                 m_fireRateTimer = Time.time;
                 Instantiate(m_BulletObjectPrefab, m_BulletSpawnPoint.position, m_BulletSpawnPoint.rotation, m_BulletStorage);

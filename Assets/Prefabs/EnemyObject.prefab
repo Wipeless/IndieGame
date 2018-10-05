@@ -231,6 +231,8 @@ MonoBehaviour:
   m_BulletObjectPrefab: {fileID: 114707455597389670, guid: f3950de68b8809f4b920a04f3bc5e1cf,
     type: 2}
   m_BulletStorage: {fileID: 4431909059539794}
+  m_MinFireRate: 0.6
+  m_MaxFireRate: 1
   m_FireRange: 20
 --- !u!136 &136616051025441626
 CapsuleCollider:

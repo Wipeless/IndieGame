@@ -344,6 +344,7 @@ MonoBehaviour:
     type: 2}
   m_NeutralObjectStorage: {fileID: 1283997858}
   m_EnemyObjectStorage: {fileID: 1357262666}
+  m_GameplayScreen: {fileID: 666436723}
 --- !u!1 &933930347
 GameObject:
   m_ObjectHideFlags: 0

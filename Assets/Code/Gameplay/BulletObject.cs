@@ -5,15 +5,9 @@ using UnityEngine;
 public class BulletObject : GameplayObject {
 
     private const int k_bulletLifespan = 1;
-    private int m_bulletStrength = 100;
-    public float m_FireForce;
 
-    #region Public Properties
-    public int BulletStrength
-    {
-        get { return m_bulletStrength; }
-    }
-    #endregion
+    public int m_BulletStrength = 100; // how much damage it does to an object
+    public float m_FireForce;
 
     // Use this for initialization
     void Start ()

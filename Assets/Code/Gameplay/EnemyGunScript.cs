@@ -6,11 +6,11 @@ public class EnemyGunScript : MonoBehaviour {
 
     public BulletObject m_BulletObjectPrefab;
     public Transform m_BulletStorage;
+    public float m_MinFireRate = 0.3f;
+    public float m_MaxFireRate = 0.6f;
 
     private Transform m_playerTransform;
 
-    private const float k_maxFireRate = 0.6f;
-    private const float k_minFireRate = 0.3f;
     private float m_fireRateLimit;
     private float m_fireRateTimer;
 
@@ -20,7 +20,7 @@ public class EnemyGunScript : MonoBehaviour {
     void Start ()
     {
         // Give some variety to how fast each enemy shoots
-        m_fireRateLimit = Random.Range(k_minFireRate, k_maxFireRate);
+        m_fireRateLimit = Random.Range(m_MinFireRate, m_MaxFireRate);
 
         // Find the player's transform
         m_playerTransform = FindObjectOfType<PlayerObject>().gameObject.transform;

@@ -408,10 +408,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_MovementForce: 1000
-  m_BulletObjectPrefab: {fileID: 114707455597389670, guid: f3950de68b8809f4b920a04f3bc5e1cf,
+  m_BulletObjectPrefab: {fileID: 114097331621640990, guid: 94c61165de6a6a946aa23c713c7fcc87,
     type: 2}
   m_BulletSpawnPoint: {fileID: 4375271320377644}
   m_BulletStorage: {fileID: 4215309251490740}
+  m_FireRateLimit: 0.05
 --- !u!114 &114827086857412922
 MonoBehaviour:
   m_ObjectHideFlags: 1

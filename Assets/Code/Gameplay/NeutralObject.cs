@@ -21,7 +21,7 @@ public class NeutralObject : GameplayObject {
         if (collision.gameObject.tag == "BulletTag")
         {
             // This neutral is being hit by a bullet.  Reduce its health by the strength of the bullet
-            m_health -= collision.gameObject.GetComponent<BulletObject>().BulletStrength;
+            m_health -= collision.gameObject.GetComponent<BulletObject>().m_BulletStrength;
 
             if (m_health <= 0)
             {
