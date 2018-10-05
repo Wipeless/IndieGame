@@ -52,6 +52,9 @@ public class NeutralObject : GameplayObject {
         {
             m_isDying = true;
             Destroy(this.gameObject);
+
+            ScoreManager.AddScore(-45);
+
         }
     }
 }

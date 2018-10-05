@@ -11,8 +11,12 @@ public class SceneManagerScript : MonoBehaviour {
     public Transform m_NeutralObjectStorage;
     public Transform m_EnemyObjectStorage;
 
+    public GameplayScreen m_GameplayScreen;
+
     private PlayerObject m_playerObject;
     private float m_gameplayStartTime;
+
+    private int m_lastScore = 0;
 
 	// Use this for initialization
 	void Start ()
@@ -36,11 +40,15 @@ public class SceneManagerScript : MonoBehaviour {
         {
             Instantiate(m_EnemyObjectPrefab, new Vector3(i * 2, 0, -5), Quaternion.identity, m_EnemyObjectStorage);
         }
-
     }
 
     // Update is called once per frame
-    void Update () {
-		
-	}
+    void Update ()
+    {
+        if (m_lastScore != ScoreManager.GetScore())
+        {
+            m_lastScore = ScoreManager.GetScore();
+            m_GameplayScreen.SetIntelScore(m_lastScore);
+        }
+    }
 }

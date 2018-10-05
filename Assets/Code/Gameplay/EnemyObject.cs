@@ -54,6 +54,7 @@ public class EnemyObject : GameplayObject {
         {
             m_isDying = true;
             Destroy(this.gameObject);
+            ScoreManager.AddScore(20);
         }
     }
 }

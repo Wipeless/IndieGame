@@ -69,6 +69,7 @@
     <Compile Include="Assets\Code\Gameplay\NeutralObject.cs" />
     <Compile Include="Assets\Code\Gameplay\PlayerObject.cs" />
     <Compile Include="Assets\Code\Gameplay\SceneManagerScript.cs" />
+    <Compile Include="Assets\Code\Gameplay\ScoreManager.cs" />
     <Compile Include="Assets\Code\Gameplay\SpinScript.cs" />
     <Compile Include="Assets\Code\UI\GameplayScreen.cs" />
     <Compile Include="Assets\Code\UI\MainMenuScreen.cs" />
