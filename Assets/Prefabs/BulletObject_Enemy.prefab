@@ -114,7 +114,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_MovementForce: 0
   m_BulletStrength: 100
-  m_FireForce: 3000
+  m_FireForce: 2000
 --- !u!135 &135036236474772690
 SphereCollider:
   m_ObjectHideFlags: 1

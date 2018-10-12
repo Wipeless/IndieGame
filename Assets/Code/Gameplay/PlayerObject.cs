@@ -12,7 +12,9 @@ public class PlayerObject : GameplayObject {
     private const float k_rotateSpeed = 1.5f;
     private float m_fireRateTimer;
     private Vector3 m_rotationYAxis = new Vector3(0, 0, 0);
+    private SceneManagerScript m_sceneManager;
 
+    private int m_ammoCount = 100;
 
     // Use this for initialization
     void Start ()
@@ -46,14 +48,35 @@ public class PlayerObject : GameplayObject {
             Rotate(-1);
         }
 
-        if (Input.GetMouseButton(0))
+        // Handle weapon firing if there's ammo
+        if (m_ammoCount > 0)
         {
-            if (Time.time - m_fireRateTimer > m_FireRateLimit)
+            if (Input.GetMouseButton(0))
             {
-                m_fireRateTimer = Time.time;
-                Instantiate(m_BulletObjectPrefab, m_BulletSpawnPoint.position, m_BulletSpawnPoint.rotation, m_BulletStorage);
+                if (Time.time - m_fireRateTimer > m_FireRateLimit)
+                {
+                    m_fireRateTimer = Time.time;
+                    Instantiate(m_BulletObjectPrefab, m_BulletSpawnPoint.position, m_BulletSpawnPoint.rotation, m_BulletStorage);
+
+                    m_ammoCount--;
+
+                    if (m_ammoCount < 0)
+                    {
+                        // The player is now out of ammo
+                        m_ammoCount = 0;
+                    }
+
+                    // update UI
+                    m_sceneManager.SetAmmo(m_ammoCount);
+                }
             }
         }
+    }
+
+    public void SetSceneManager(SceneManagerScript val)
+    {
+        m_sceneManager = val;
+        m_sceneManager.SetAmmo(m_ammoCount);
     }
 
     private void Rotate(float y)
