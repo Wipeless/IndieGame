@@ -22,11 +22,15 @@ public class SceneManagerScript : MonoBehaviour {
     private int m_lastScore = 0;
     private float m_fuelScore = 100;
 
+    #region Const
     private const float k_fuelDecreaseRate = 0.01f;
     private const int k_timeLimit = 180;
+    private const float k_spawnRangeMin = 30;
+    private const float k_spawnRangeMax = 100;
+    #endregion
 
-	// Use this for initialization
-	void Start ()
+    // Use this for initialization
+    void Start ()
     {
         // Mark the start of the gameplay scene
         m_gameplayStartTime = Time.time;
@@ -41,16 +45,19 @@ public class SceneManagerScript : MonoBehaviour {
         // Spawn neutral objects
         for (int i = 0; i < 10; i++)
         {
-            Instantiate(m_NeutralObjectPrefab, new Vector3(0, 0, i * 2), Quaternion.identity, m_NeutralObjectStorage);
+            NeutralObject newNeutral = Instantiate(m_NeutralObjectPrefab, Vector3.zero, Quaternion.identity, m_NeutralObjectStorage);
+            newNeutral.transform.position = RandomizeSpawn(newNeutral.transform.position);
         }
 
         // Spawn enemy objects
         for (int i = 0; i < 10; i++)
         {
-            Instantiate(m_EnemyObjectPrefab, new Vector3(i * 2, 0, -5), Quaternion.identity, m_EnemyObjectStorage);
+            EnemyObject newEnemy = Instantiate(m_EnemyObjectPrefab, Vector3.zero, Quaternion.identity, m_EnemyObjectStorage);
+            newEnemy.transform.position = RandomizeSpawn(newEnemy.transform.position);
         }
 
-        Instantiate(m_EnemyBuildingObjectPrefab, new Vector3(20, 0, 20), Quaternion.identity, m_EnemyBuildingObjectStorage);
+        EnemyBuildingObject newEnemyBuilding = Instantiate(m_EnemyBuildingObjectPrefab, Vector3.zero, Quaternion.identity, m_EnemyBuildingObjectStorage);
+        newEnemyBuilding.transform.position = RandomizeSpawn(newEnemyBuilding.transform.position);
     }
 
     // Update is called once per frame
@@ -71,6 +78,22 @@ public class SceneManagerScript : MonoBehaviour {
     #endregion
 
     #region Private
+
+    /// <summary>
+    /// Randomize the position of a 3D object on a 2D plane.
+    /// </summary>
+    /// <param name="origin"></param>
+    /// <returns></returns>
+    private Vector3 RandomizeSpawn(Vector3 origin)
+    {
+        float randomRadius = Random.Range(k_spawnRangeMin, k_spawnRangeMax);
+
+        Vector2 randomPosition = Random.insideUnitCircle * randomRadius;
+        origin.x += randomPosition.x;
+        origin.z += randomPosition.y;
+
+        return origin;
+    }
 
     private void HandleScore()
     {
