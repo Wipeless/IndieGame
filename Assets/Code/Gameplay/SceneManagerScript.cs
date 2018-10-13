@@ -7,9 +7,11 @@ public class SceneManagerScript : MonoBehaviour {
     public PlayerObject m_PlayerObjectPrefab;
     public NeutralObject m_NeutralObjectPrefab;
     public EnemyObject m_EnemyObjectPrefab;
+    public EnemyBuildingObject m_EnemyBuildingObjectPrefab;
 
     public Transform m_NeutralObjectStorage;
     public Transform m_EnemyObjectStorage;
+    public Transform m_EnemyBuildingObjectStorage;
 
     public GameplayScreen m_GameplayScreen;
 
@@ -31,6 +33,7 @@ public class SceneManagerScript : MonoBehaviour {
 
         // Spawn player
         m_playerObject = Instantiate(m_PlayerObjectPrefab);
+
         // Make sure to spawn player in the air
         m_playerObject.transform.position += new Vector3(0, 5, 0);
         m_playerObject.SetSceneManager(this);
@@ -46,6 +49,8 @@ public class SceneManagerScript : MonoBehaviour {
         {
             Instantiate(m_EnemyObjectPrefab, new Vector3(i * 2, 0, -5), Quaternion.identity, m_EnemyObjectStorage);
         }
+
+        Instantiate(m_EnemyBuildingObjectPrefab, new Vector3(20, 0, 20), Quaternion.identity, m_EnemyBuildingObjectStorage);
     }
 
     // Update is called once per frame
