@@ -6,6 +6,10 @@ public class EnemyObject : GameplayObject {
 
     public EnemyGunScript m_EnemyGun;
 
+    private bool m_getsBonus;
+
+    private const int k_bonusPoints = 100;
+
 	// Use this for initialization
 	void Start ()
     {
@@ -22,11 +26,19 @@ public class EnemyObject : GameplayObject {
     {
         if (collision.gameObject.tag == "BulletTag")
         {
+            BulletObject bullet = collision.gameObject.GetComponent<BulletObject>();
+
             // This enemy is being hit by a bullet.  Reduce its health by the strength of the bullet
-            m_health -= collision.gameObject.GetComponent<BulletObject>().m_BulletStrength;
+            m_health -= bullet.m_BulletStrength;
 
             if (m_health <= 0)
             {
+                // Player gets bonus for killing blow bouncing bullet off wall first
+                if (bullet.m_hitWall)
+                {
+                    m_getsBonus = true; 
+                }
+
                 // This enemy has taken too much damage, kill it.
                 HandleDeath();
             }
@@ -54,7 +66,12 @@ public class EnemyObject : GameplayObject {
         {
             m_isDying = true;
             Destroy(this.gameObject);
+
             ScoreManager.AddScore(20);
+            if (m_getsBonus)
+            {
+                ScoreManager.AddScore(k_bonusPoints);
+            }
         }
     }
 }

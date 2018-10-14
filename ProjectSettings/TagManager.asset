@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - BulletTag
+  - WallTag
   layers:
   - Default
   - TransparentFX
