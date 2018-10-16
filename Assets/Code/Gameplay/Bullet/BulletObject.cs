@@ -10,6 +10,8 @@ public class BulletObject : GameplayObject {
     public float m_FireForce;
     public bool m_hitWall { get; private set; }
 
+    public ExplosionObject m_Explosion;
+
     // Use this for initialization
     void Start ()
     {
@@ -33,6 +35,13 @@ public class BulletObject : GameplayObject {
         // If a bullet collides with anything except for a wall, kill it
         if (collision.gameObject.tag != "WallTag")
         {
+            // Instantiate an explosion if this bullet has one.
+
+            if (m_Explosion != null)
+            {
+                Instantiate(m_Explosion, transform.position, transform.rotation, null);
+            }
+
             HandleDeath();
         }
         else

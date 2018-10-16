@@ -20,14 +20,51 @@ public class EnemyBuildingObject : GameplayObject {
 
     private void OnCollisionEnter(Collision collision)
     {
-       if (collision.gameObject.tag == "BulletTag")
-        {
-            m_health -= collision.gameObject.GetComponent<BulletObject>().m_BulletStrength;
+        GameObject collisionObject = collision.gameObject;
 
-            if (m_health <= 0)
-            {
-                HandleDeath();
-            }
+        switch (collisionObject.tag)
+        {
+            case "BulletTag":
+                // This is being hit by a bullet.  Reduce its health by the strength of the bullet
+                m_health -= collisionObject.GetComponent<BulletObject>().m_BulletStrength;
+
+                if (m_health <= 0)
+                {
+                    HandleDeath();
+                }
+                break;
+            case "GroundTag":
+                break;
+            case "WallTag":
+                break;
+            default:
+                Debug.Log("Encountered an unhandled tag: " + collisionObject.tag);
+                break;
+        }
+    }
+
+    /// <summary>
+    /// Handle triggers.  Triggers are collisions with objects without rigid bodies such as boundaries and switches.
+    /// </summary>
+    /// <param name="other"></param>
+    private void OnTriggerEnter(Collider other)
+    {
+        GameObject otherObject = other.gameObject;
+
+        switch (otherObject.tag)
+        {
+            case "ExplosionTag":
+                // This neutral is being hit by an explosion.  Reduce its health by the strength of the explosion
+                m_health -= otherObject.gameObject.GetComponent<ExplosionObject>().m_ExplosionStrength;
+
+                if (m_health <= 0)
+                {
+                    HandleDeath();
+                }
+                break;
+            default:
+                Debug.Log("Encountered an unhandled tag: " + otherObject.tag);
+                break;
         }
     }
 

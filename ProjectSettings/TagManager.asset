@@ -6,6 +6,8 @@ TagManager:
   tags:
   - BulletTag
   - WallTag
+  - ExplosionTag
+  - GroundTag
   layers:
   - Default
   - TransparentFX

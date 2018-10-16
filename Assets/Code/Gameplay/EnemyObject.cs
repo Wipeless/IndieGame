@@ -24,24 +24,63 @@ public class EnemyObject : GameplayObject {
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "BulletTag")
+        GameObject collisionObject = collision.gameObject;
+
+        switch (collisionObject.tag)
         {
-            BulletObject bullet = collision.gameObject.GetComponent<BulletObject>();
+            case "BulletTag":
+                BulletObject bullet = collisionObject.GetComponent<BulletObject>();
 
-            // This enemy is being hit by a bullet.  Reduce its health by the strength of the bullet
-            m_health -= bullet.m_BulletStrength;
+                // This enemy is being hit by a bullet.  Reduce its health by the strength of the bullet
+                m_health -= bullet.m_BulletStrength;
 
-            if (m_health <= 0)
-            {
-                // Player gets bonus for killing blow bouncing bullet off wall first
-                if (bullet.m_hitWall)
+                if (m_health <= 0)
                 {
-                    m_getsBonus = true; 
-                }
+                    // Player gets bonus for killing blow bouncing bullet off wall first
+                    if (bullet.m_hitWall)
+                    {
+                        m_getsBonus = true;
+                    }
 
-                // This enemy has taken too much damage, kill it.
-                HandleDeath();
-            }
+                    // This enemy has taken too much damage, kill it.
+                    HandleDeath();
+                }
+                break;
+            case "GroundTag":
+                break;
+            case "WallTag":
+                break;
+            default:
+                Debug.Log("Encountered an unhandled tag: " + collisionObject.tag);
+                break;
+        }
+    }
+
+    /// <summary>
+    /// Handle triggers.  Triggers are collisions with objects without rigid bodies such as boundaries and switches.
+    /// </summary>
+    /// <param name="other"></param>
+    private void OnTriggerEnter(Collider other)
+    {
+        GameObject otherObject = other.gameObject;
+
+        switch (otherObject.tag)
+        {
+            case "ExplosionTag":
+                ExplosionObject explosion = otherObject.GetComponent<ExplosionObject>();
+
+                // This enemy is being hit by a explosion.  Reduce its health by the strength of the explosion
+                m_health -= explosion.m_ExplosionStrength;
+
+                if (m_health <= 0)
+                {
+                    // This enemy has taken too much damage, kill it.
+                    HandleDeath();
+                }
+                break;
+            default:
+                Debug.Log("Encountered an unhandled tag: " + otherObject.tag);
+                break;
         }
     }
 

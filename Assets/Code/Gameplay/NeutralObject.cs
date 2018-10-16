@@ -18,16 +18,53 @@ public class NeutralObject : GameplayObject {
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "BulletTag")
-        {
-            // This neutral is being hit by a bullet.  Reduce its health by the strength of the bullet
-            m_health -= collision.gameObject.GetComponent<BulletObject>().m_BulletStrength;
+        GameObject collisionObject = collision.gameObject;
 
-            if (m_health <= 0)
-            {
-                // This neutral has taken too much damage, kill it.
-                HandleDeath();
-            }
+        switch (collisionObject.tag)
+        {
+            case "BulletTag":
+                // This neutral is being hit by a bullet.  Reduce its health by the strength of the bullet
+                m_health -= collisionObject.GetComponent<BulletObject>().m_BulletStrength;
+
+                if (m_health <= 0)
+                {
+                    // This neutral has taken too much damage, kill it.
+                    HandleDeath();
+                }
+                break;
+            case "GroundTag":
+                break;
+            case "WallTag":
+                break;
+            default:
+                Debug.Log("Encountered an unhandled tag: " + collisionObject.tag);
+                break;
+        }
+    }
+
+    /// <summary>
+    /// Handle triggers.  Triggers are collisions with objects without rigid bodies such as boundaries and switches.
+    /// </summary>
+    /// <param name="other"></param>
+    private void OnTriggerEnter(Collider other)
+    {
+        GameObject otherObject = other.gameObject;
+
+        switch (otherObject.tag)
+        {
+            case "ExplosionTag":
+                // This neutral is being hit by an explosion.  Reduce its health by the strength of the explosion
+                m_health -= otherObject.GetComponent<ExplosionObject>().m_ExplosionStrength;
+
+                if (m_health <= 0)
+                {
+                    // This neutral has taken too much damage, kill it.
+                    HandleDeath();
+                }
+                break;
+            default:
+                Debug.Log("Encountered an unhandled tag: " + otherObject.tag);
+                break;
         }
     }
 
