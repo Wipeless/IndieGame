@@ -8,6 +8,7 @@ public class BulletObject : GameplayObject {
 
     public int m_BulletStrength = 100; // how much damage it does to an object
     public float m_FireForce;
+    public bool m_hitWall { get; private set; }
 
     // Use this for initialization
     void Start ()
@@ -29,8 +30,15 @@ public class BulletObject : GameplayObject {
 
     private void OnCollisionEnter(Collision collision)
     {
-        // If the bullet collides with anything, kill it
-        HandleDeath();
+        // If a bullet collides with anything except for a wall, kill it
+        if (collision.gameObject.tag != "WallTag")
+        {
+            HandleDeath();
+        }
+        else
+        {
+            m_hitWall = true; 
+        }
     }
 
     protected override void HandleDeath()

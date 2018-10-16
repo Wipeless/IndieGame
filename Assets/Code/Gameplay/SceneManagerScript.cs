@@ -8,10 +8,12 @@ public class SceneManagerScript : MonoBehaviour {
     public NeutralObject m_NeutralObjectPrefab;
     public EnemyObject m_EnemyObjectPrefab;
     public EnemyBuildingObject m_EnemyBuildingObjectPrefab;
+    public NeutralBuildingObject m_NeutralBuildingObjectPrefab;
 
     public Transform m_NeutralObjectStorage;
     public Transform m_EnemyObjectStorage;
     public Transform m_EnemyBuildingObjectStorage;
+    public Transform m_NeutralBuildingObjectStorage;
 
     public GameplayScreen m_GameplayScreen;
 
@@ -56,8 +58,17 @@ public class SceneManagerScript : MonoBehaviour {
             newEnemy.transform.position = RandomizeSpawn(newEnemy.transform.position);
         }
 
+        // Spawn neutral buildings
+        for (int i = 0; i < 10; i++)
+        {
+            NeutralBuildingObject newNeutralBuilding = Instantiate(m_NeutralBuildingObjectPrefab, Vector3.zero, Quaternion.identity, m_NeutralBuildingObjectStorage);
+            newNeutralBuilding.transform.position = RandomizeSpawn(newNeutralBuilding.transform.position);
+        }
+
+        // Spawn enemy building
         EnemyBuildingObject newEnemyBuilding = Instantiate(m_EnemyBuildingObjectPrefab, Vector3.zero, Quaternion.identity, m_EnemyBuildingObjectStorage);
         newEnemyBuilding.transform.position = RandomizeSpawn(newEnemyBuilding.transform.position);
+
     }
 
     // Update is called once per frame
