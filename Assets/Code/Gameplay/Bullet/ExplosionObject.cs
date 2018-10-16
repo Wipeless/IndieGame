@@ -5,13 +5,12 @@ using UnityEngine;
 public class ExplosionObject : MonoBehaviour
 {
     public Material m_ExplosionMaterial;
+    public float m_Radius;
+    public int m_ExplosionStrength = 200;
 
     private const float k_fadeRate = 0.05f;
-    private float m_radius = 5;
     private float m_lifespan = 0.5f;
     private Color m_originalColor;
-
-    public int m_ExplosionStrength = 200;
 
 	// Use this for initialization
 	void Start () {
@@ -27,7 +26,7 @@ public class ExplosionObject : MonoBehaviour
         m_originalColor = m_ExplosionMaterial.color;
         m_originalColor.a = 0.5f;
 
-        transform.localScale = new Vector3(m_radius, m_radius, m_radius);
+        transform.localScale = new Vector3(m_Radius, m_Radius, m_Radius);
 
         //Explosions will not have a rigid body.
         //On birth, mark them for death.

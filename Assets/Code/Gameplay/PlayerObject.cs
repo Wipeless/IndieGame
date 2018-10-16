@@ -4,21 +4,34 @@ using UnityEngine;
 
 public class PlayerObject : GameplayObject {
 
-    public BulletObject m_BulletObjectPrefab;
+    private enum GunSelection
+    {
+        MACHINEGUN = 0,
+        ROCKET,
+        MISSILE,
+    }
+
+    private GunSelection m_currentGunSelection = GunSelection.MACHINEGUN;
+
+    public BulletObject m_MachineGunBulletObjectPrefab;
+    public BulletObject m_MissileBulletObjectPrefab;
+    public BulletObject m_RocketBulletObjectPrefab;
     public Transform m_BulletSpawnPoint;
     public Transform m_BulletStorage;
-    public float m_FireRateLimit = 0.1f;
 
     private const float k_rotateSpeed = 1.5f;
     private float m_fireRateTimer;
     private Vector3 m_rotationYAxis = new Vector3(0, 0, 0);
     private SceneManagerScript m_sceneManager;
+    private float m_fireRateLimit = 0;
 
     private int m_ammoCount = 100;
 
     // Use this for initialization
     void Start ()
     {
+        UpdateFireRate();
+
         base.HandleBirth();
 	}
 	
@@ -29,6 +42,19 @@ public class PlayerObject : GameplayObject {
 	}
 
     protected override void HandleMovement()
+    {
+        HandlePlayerMovement();
+        HandleWeaponSelections();
+        HandleWeaponFiring();
+    }
+
+    public void SetSceneManager(SceneManagerScript val)
+    {
+        m_sceneManager = val;
+        m_sceneManager.SetAmmo(m_ammoCount);
+    }
+
+    private void HandlePlayerMovement()
     {
         if (Input.GetKey(KeyCode.W))
         {
@@ -47,17 +73,76 @@ public class PlayerObject : GameplayObject {
         {
             Rotate(-1);
         }
+    }
 
+    private void HandleWeaponSelections()
+    {
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            m_currentGunSelection = GunSelection.MACHINEGUN;
+            UpdateFireRate();
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            m_currentGunSelection = GunSelection.ROCKET;
+            UpdateFireRate();
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            m_currentGunSelection = GunSelection.MISSILE;
+            UpdateFireRate();
+        }
+    }
+    
+    /// <summary>
+    /// Reset the fire rate with each new bullet selection
+    /// </summary>
+    private void UpdateFireRate()
+    {
+        switch (m_currentGunSelection)
+        {
+            case GunSelection.MACHINEGUN:
+                m_fireRateLimit = m_MachineGunBulletObjectPrefab.m_BulletFireRate;
+                break;
+            case GunSelection.MISSILE:
+                m_fireRateLimit = m_MissileBulletObjectPrefab.m_BulletFireRate;
+                break;
+            case GunSelection.ROCKET:
+                m_fireRateLimit = m_RocketBulletObjectPrefab.m_BulletFireRate;
+                break;
+            default:
+                Debug.Log("Unhandled gun selection: " + m_currentGunSelection);
+                break;
+        }
+    }
+
+
+    private void HandleWeaponFiring()
+    {
         // Handle weapon firing if there's ammo
         if (m_ammoCount > 0)
         {
             if (Input.GetMouseButton(0))
             {
-                if (Time.time - m_fireRateTimer > m_FireRateLimit)
+                if (Time.time - m_fireRateTimer > m_fireRateLimit)
                 {
                     m_fireRateTimer = Time.time;
-                    Instantiate(m_BulletObjectPrefab, m_BulletSpawnPoint.position, m_BulletSpawnPoint.rotation, m_BulletStorage);
 
+                    switch (m_currentGunSelection)
+                    {
+                        case GunSelection.MACHINEGUN:
+                            Instantiate(m_MachineGunBulletObjectPrefab, m_BulletSpawnPoint.position, m_BulletSpawnPoint.rotation, m_BulletStorage);
+                            break;
+                        case GunSelection.MISSILE:
+                            Instantiate(m_MissileBulletObjectPrefab, m_BulletSpawnPoint.position, m_BulletSpawnPoint.rotation, m_BulletStorage);
+                            break;
+                        case GunSelection.ROCKET:
+                            Instantiate(m_RocketBulletObjectPrefab, m_BulletSpawnPoint.position, m_BulletSpawnPoint.rotation, m_BulletStorage);
+                            break;
+                        default:
+                            Debug.Log("Unhandled gun selection: " + m_currentGunSelection);
+                            break;
+                    }
                     m_ammoCount--;
 
                     if (m_ammoCount < 0)
@@ -71,12 +156,6 @@ public class PlayerObject : GameplayObject {
                 }
             }
         }
-    }
-
-    public void SetSceneManager(SceneManagerScript val)
-    {
-        m_sceneManager = val;
-        m_sceneManager.SetAmmo(m_ammoCount);
     }
 
     private void Rotate(float y)

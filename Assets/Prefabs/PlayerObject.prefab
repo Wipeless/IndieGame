@@ -408,11 +408,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_MovementForce: 1000
-  m_BulletObjectPrefab: {fileID: 114097331621640990, guid: 94c61165de6a6a946aa23c713c7fcc87,
+  m_MachineGunBulletObjectPrefab: {fileID: 114097331621640990, guid: 94c61165de6a6a946aa23c713c7fcc87,
+    type: 2}
+  m_MissileBulletObjectPrefab: {fileID: 114895452966501446, guid: 0973c074ea558f347adedb2d2e1d469f,
+    type: 2}
+  m_RocketBulletObjectPrefab: {fileID: 114222149102699266, guid: 7c5cd75dfdbfde649bf9b934d26f6000,
     type: 2}
   m_BulletSpawnPoint: {fileID: 4375271320377644}
   m_BulletStorage: {fileID: 4215309251490740}
-  m_FireRateLimit: 0.05
 --- !u!114 &114827086857412922
 MonoBehaviour:
   m_ObjectHideFlags: 1

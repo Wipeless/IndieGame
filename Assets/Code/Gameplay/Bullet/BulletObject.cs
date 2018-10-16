@@ -6,6 +6,7 @@ public class BulletObject : GameplayObject {
 
     private const int k_bulletLifespan = 1;
 
+    public float m_BulletFireRate;
     public int m_BulletStrength = 100; // how much damage it does to an object
     public float m_FireForce;
     public bool m_hitWall { get; private set; }
