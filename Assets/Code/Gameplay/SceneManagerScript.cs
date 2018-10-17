@@ -9,11 +9,13 @@ public class SceneManagerScript : MonoBehaviour {
     public EnemyObject m_EnemyObjectPrefab;
     public EnemyBuildingObject m_EnemyBuildingObjectPrefab;
     public NeutralBuildingObject m_NeutralBuildingObjectPrefab;
+    public TankObject m_TankObjectPrefab;
 
     public Transform m_NeutralObjectStorage;
     public Transform m_EnemyObjectStorage;
     public Transform m_EnemyBuildingObjectStorage;
     public Transform m_NeutralBuildingObjectStorage;
+    public Transform m_TankObjectStorage;
 
     public GameplayScreen m_GameplayScreen;
 
@@ -69,6 +71,8 @@ public class SceneManagerScript : MonoBehaviour {
         EnemyBuildingObject newEnemyBuilding = Instantiate(m_EnemyBuildingObjectPrefab, Vector3.zero, Quaternion.identity, m_EnemyBuildingObjectStorage);
         newEnemyBuilding.transform.position = RandomizeSpawn(newEnemyBuilding.transform.position);
 
+        TankObject newTankObject = Instantiate(m_TankObjectPrefab, Vector3.zero, Quaternion.identity, m_TankObjectStorage);
+        newTankObject.transform.position = RandomizeSpawn(newTankObject.transform.position);
     }
 
     // Update is called once per frame
