@@ -74,6 +74,7 @@
     <Compile Include="Assets\Code\Gameplay\SceneManagerScript.cs" />
     <Compile Include="Assets\Code\Gameplay\ScoreManager.cs" />
     <Compile Include="Assets\Code\Gameplay\SpinScript.cs" />
+    <Compile Include="Assets\Code\Gameplay\TankObject.cs" />
     <Compile Include="Assets\Code\UI\GameplayScreen.cs" />
     <Compile Include="Assets\Code\UI\MainMenuScreen.cs" />
     <Compile Include="Assets\Code\XMLReaders\XMLReader_GameProperties.cs" />

@@ -2,28 +2,48 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyObject : GameplayObject {
+public class TankObject : GameplayObject
+{
 
     public EnemyGunScript m_EnemyGun;
 
     private bool m_getsBonus;
     private bool m_explosionDeath;
 
-    private const int k_EnemyPoints = 20;
-    private const int k_bonusPoints = 100;
-    private const int k_explosionBonusPoints = 5;
+    private const int k_enemyPoints = 1000;
+    private const int k_bonusPoints = 1000;
+    private const int k_explosionBonusPoints = 25;
+    private const float k_range = 20;
 
-	// Use this for initialization
-	void Start ()
+    // Use this for initialization
+    void Start()
     {
         HandleBirth();
+        InvokeRepeating("HandleMovement", 5, 5);
     }
 
     // Update is called once per frame
-    void Update ()
+    void Update()
     {
-        HandleMovement();
-	}
+    }
+
+    protected override void HandleBirth()
+    {
+        base.HandleBirth();
+        m_health = 20000;
+    }
+
+    protected override void HandleMovement()
+    {
+        Vector3 playerPosition = FindObjectOfType<PlayerObject>().gameObject.transform.position;
+
+        if (playerPosition == null)
+        {
+            Debug.LogError("Unable to find player in the scene");
+        }
+
+        transform.position = JumpWithinRange(transform.position, playerPosition);
+    }
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -40,10 +60,7 @@ public class EnemyObject : GameplayObject {
                 if (m_health <= 0)
                 {
                     // Player gets bonus for killing blow bouncing bullet off wall first
-                    if (bullet.m_hitWall)
-                    {
-                        m_getsBonus = true;
-                    }
+                    m_getsBonus = bullet.m_hitWall;
 
                     // This enemy has taken too much damage, kill it.
                     HandleDeath();
@@ -59,60 +76,14 @@ public class EnemyObject : GameplayObject {
         }
     }
 
-    /// <summary>
-    /// Handle triggers.  Triggers are collisions with objects without rigid bodies such as boundaries and switches.
-    /// </summary>
-    /// <param name="other"></param>
-    private void OnTriggerEnter(Collider other)
-    {
-        GameObject otherObject = other.gameObject;
-
-        switch (otherObject.tag)
-        {
-            case "ExplosionTag":
-                ExplosionObject explosion = otherObject.GetComponent<ExplosionObject>();
-
-                // This enemy is being hit by a explosion.  Reduce its health by the strength of the explosion
-                m_health -= explosion.m_ExplosionStrength;
-
-                if (m_health <= 0)
-                {
-                    m_explosionDeath = true;
-                    // This enemy has taken too much damage, kill it.
-                    HandleDeath();
-                }
-                break;
-            default:
-                Debug.Log("Encountered an unhandled tag: " + otherObject.tag);
-                break;
-        }
-    }
-
-    protected override void HandleBirth()
-    {
-        //Give the enemy a random direction to walk to forever
-        Vector2 randomDir = Random.insideUnitCircle;
-        transform.forward = new Vector3(randomDir.x, 0, randomDir.y);
-
-        m_health = XMLReader_GameProperties.EnemyHealth;
-
-        base.HandleBirth();
-    }
-
-    protected override void HandleMovement()
-    {
-        m_rigidBody.AddForce(transform.forward * m_MovementForce);
-    }
-
     protected override void HandleDeath()
     {
-         // Kill this game object
         if (!m_isDying)
         {
             m_isDying = true;
             Destroy(this.gameObject);
 
-            ScoreManager.AddScore(k_EnemyPoints);
+            ScoreManager.AddScore(k_enemyPoints);
             if (m_getsBonus)
             {
                 ScoreManager.AddScore(k_bonusPoints);
@@ -122,5 +93,37 @@ public class EnemyObject : GameplayObject {
                 ScoreManager.AddScore(k_explosionBonusPoints);
             }
         }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        GameObject otherObject = other.gameObject;
+        switch (otherObject.tag)
+        {
+            case "ExplosionTag":
+                ExplosionObject explosion = otherObject.GetComponent<ExplosionObject>();
+
+                m_health -= explosion.m_ExplosionStrength;
+
+                if (m_health <= 0)
+                {
+                    m_explosionDeath = true;
+                    HandleDeath();
+                }
+                break;
+
+            default:
+                Debug.Log("Encountered an unhandled tag: " + otherObject.tag);
+                break;
+        }
+    }
+
+    private Vector3 JumpWithinRange(Vector3 origin, Vector3 player)
+    {
+        Vector2 randomPosition = Random.insideUnitCircle * k_range;
+        origin.x = player.x + randomPosition.x;
+        origin.z = player.z + randomPosition.y;
+
+        return origin;
     }
 }

@@ -6,6 +6,11 @@ public class EnemyBuildingObject : GameplayObject {
 
     public EnemyGunScript m_EnemyGun;
 
+    private bool m_explosionDeath;
+
+    private const int k_buildingPoints = 300;
+    private const int k_explosionBonusPoints = 5;
+
 	// Use this for initialization
 	void Start ()
     {
@@ -59,6 +64,7 @@ public class EnemyBuildingObject : GameplayObject {
 
                 if (m_health <= 0)
                 {
+                    m_explosionDeath = true;
                     HandleDeath();
                 }
                 break;
@@ -81,7 +87,12 @@ public class EnemyBuildingObject : GameplayObject {
         {
             m_isDying = true;
             Destroy(this.gameObject);
-            ScoreManager.AddScore(300);
+
+            ScoreManager.AddScore(k_buildingPoints);
+            if (m_explosionDeath)
+            {
+                ScoreManager.AddScore(k_explosionBonusPoints);
+            }
         }
     }
 }
