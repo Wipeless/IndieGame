@@ -101,14 +101,15 @@ public class PlayerObject : GameplayObject {
     {
         switch (m_currentGunSelection)
         {
+            //TODO: use the fire rate from the actual bullet being fired instead of looking at the XML doc
             case GunSelection.MACHINEGUN:
-                m_fireRateLimit = m_MachineGunBulletObjectPrefab.m_BulletFireRate;
+                m_fireRateLimit = XMLReader_GameProperties.BulletFireRate_MachineGun;
                 break;
             case GunSelection.MISSILE:
-                m_fireRateLimit = m_MissileBulletObjectPrefab.m_BulletFireRate;
+                m_fireRateLimit = XMLReader_GameProperties.BulletFireRate_Missile;
                 break;
             case GunSelection.ROCKET:
-                m_fireRateLimit = m_RocketBulletObjectPrefab.m_BulletFireRate;
+                m_fireRateLimit = XMLReader_GameProperties.BulletFireRate_Rocket;
                 break;
             default:
                 Debug.Log("Unhandled gun selection: " + m_currentGunSelection);

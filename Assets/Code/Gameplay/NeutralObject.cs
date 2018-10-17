@@ -74,6 +74,8 @@ public class NeutralObject : GameplayObject {
         Vector2 randomDir = Random.insideUnitCircle;
         transform.forward = new Vector3(randomDir.x, 0, randomDir.y);
 
+        m_health = XMLReader_GameProperties.NeutralHealth;
+
         base.HandleBirth();
     }
 

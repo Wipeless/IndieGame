@@ -96,9 +96,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb2662771661e0149bbce1de7d8cce6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_ExplosionType: 1
   m_ExplosionMaterial: {fileID: 2100000, guid: 8e2fdea01aefb45428942a2fe1bd5e9b, type: 2}
-  m_Radius: 15
-  m_ExplosionStrength: 5000
 --- !u!135 &135287154263093142
 SphereCollider:
   m_ObjectHideFlags: 1

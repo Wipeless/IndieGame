@@ -70,7 +70,8 @@ public class EnemyBuildingObject : GameplayObject {
 
     protected override void HandleBirth()
     {
-        m_health = 3000;
+        m_health = XMLReader_GameProperties.EnemyHealth;
+
         base.HandleBirth();
     }
 

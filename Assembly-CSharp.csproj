@@ -76,6 +76,8 @@
     <Compile Include="Assets\Code\Gameplay\SpinScript.cs" />
     <Compile Include="Assets\Code\UI\GameplayScreen.cs" />
     <Compile Include="Assets\Code\UI\MainMenuScreen.cs" />
+    <Compile Include="Assets\Code\XMLReaders\XMLReader_GameProperties.cs" />
+    <None Include="Assets\Resources\XML\gameProperties.xml" />
     <Reference Include="UnityEditor.StandardEvents">
       <HintPath>C:/Users/Danny/Documents/GitHub/IndieGame/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
     </Reference>
