@@ -66,9 +66,11 @@ public class SceneManagerScript : MonoBehaviour {
         }
 
         // Spawn enemy building
-        EnemyBuildingObject newEnemyBuilding = Instantiate(m_EnemyBuildingObjectPrefab, Vector3.zero, Quaternion.identity, m_EnemyBuildingObjectStorage);
-        newEnemyBuilding.transform.position = RandomizeSpawn(newEnemyBuilding.transform.position);
-
+        for (int i = 0; i < 10; i++)
+        {
+            EnemyBuildingObject newEnemyBuilding = Instantiate(m_EnemyBuildingObjectPrefab, Vector3.zero, Quaternion.identity, m_EnemyBuildingObjectStorage);
+            newEnemyBuilding.transform.position = RandomizeSpawn(newEnemyBuilding.transform.position);
+        }
     }
 
     // Update is called once per frame
