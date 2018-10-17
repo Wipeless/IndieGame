@@ -7,8 +7,11 @@ public class EnemyObject : GameplayObject {
     public EnemyGunScript m_EnemyGun;
 
     private bool m_getsBonus;
+    private bool m_explosionDeath;
 
+    private const int k_EnemyPoints = 20;
     private const int k_bonusPoints = 100;
+    private const int k_explosionBonusPoints = 5;
 
 	// Use this for initialization
 	void Start ()
@@ -74,6 +77,7 @@ public class EnemyObject : GameplayObject {
 
                 if (m_health <= 0)
                 {
+                    m_explosionDeath = true;
                     // This enemy has taken too much damage, kill it.
                     HandleDeath();
                 }
@@ -106,10 +110,14 @@ public class EnemyObject : GameplayObject {
             m_isDying = true;
             Destroy(this.gameObject);
 
-            ScoreManager.AddScore(20);
+            ScoreManager.AddScore(k_EnemyPoints);
             if (m_getsBonus)
             {
                 ScoreManager.AddScore(k_bonusPoints);
+            }
+            if (m_explosionDeath)
+            {
+                ScoreManager.AddScore(k_explosionBonusPoints);
             }
         }
     }
