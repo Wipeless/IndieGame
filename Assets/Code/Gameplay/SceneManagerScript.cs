@@ -67,9 +67,12 @@ public class SceneManagerScript : MonoBehaviour {
             newNeutralBuilding.transform.position = RandomizeSpawn(newNeutralBuilding.transform.position);
         }
 
-        // Spawn enemy building
-        EnemyBuildingObject newEnemyBuilding = Instantiate(m_EnemyBuildingObjectPrefab, Vector3.zero, Quaternion.identity, m_EnemyBuildingObjectStorage);
-        newEnemyBuilding.transform.position = RandomizeSpawn(newEnemyBuilding.transform.position);
+        // Spawn enemy buildings
+        for (int i = 0; i < 10; i++)
+        {
+            EnemyBuildingObject newEnemyBuilding = Instantiate(m_EnemyBuildingObjectPrefab, Vector3.zero, Quaternion.identity, m_EnemyBuildingObjectStorage);
+            newEnemyBuilding.transform.position = RandomizeSpawn(newEnemyBuilding.transform.position);
+        }
 
         TankObject newTankObject = Instantiate(m_TankObjectPrefab, Vector3.zero, Quaternion.identity, m_TankObjectStorage);
         newTankObject.transform.position = RandomizeSpawn(newTankObject.transform.position);

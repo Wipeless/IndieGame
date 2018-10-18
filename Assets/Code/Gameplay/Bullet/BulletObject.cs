@@ -81,6 +81,7 @@ public class BulletObject : GameplayObject {
         }
         else
         {
+            Debug.Log("It hit the wall!");
             m_hitWall = true; 
         }
     }

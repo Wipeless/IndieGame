@@ -7,9 +7,11 @@ public class EnemyBuildingObject : GameplayObject {
     public EnemyGunScript m_EnemyGun;
 
     private bool m_explosionDeath;
+    private bool m_getsBonus;
 
     private const int k_buildingPoints = 300;
     private const int k_explosionBonusPoints = 5;
+    private const int k_bonusPoints = 100;
 
 	// Use this for initialization
 	void Start ()
@@ -30,11 +32,15 @@ public class EnemyBuildingObject : GameplayObject {
         switch (collisionObject.tag)
         {
             case "BulletTag":
+                BulletObject bullet = collisionObject.GetComponent<BulletObject>();
+
                 // This is being hit by a bullet.  Reduce its health by the strength of the bullet
                 m_health -= collisionObject.GetComponent<BulletObject>().m_BulletStrength;
 
                 if (m_health <= 0)
                 {
+                    m_getsBonus = bullet.m_hitWall;
+
                     HandleDeath();
                 }
                 break;
@@ -92,6 +98,10 @@ public class EnemyBuildingObject : GameplayObject {
             if (m_explosionDeath)
             {
                 ScoreManager.AddScore(k_explosionBonusPoints);
+            }
+            if (m_getsBonus)
+            {
+                ScoreManager.AddScore(k_bonusPoints);
             }
         }
     }
