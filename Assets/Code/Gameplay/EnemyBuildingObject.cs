@@ -76,7 +76,7 @@ public class EnemyBuildingObject : GameplayObject {
 
     protected override void HandleBirth()
     {
-        m_health = XMLReader_GameProperties.EnemyHealth;
+        m_health = XMLReader_GameProperties.EnemyBuildingHealth;
 
         base.HandleBirth();
     }
