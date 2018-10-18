@@ -87,6 +87,7 @@ public class BulletObject : GameplayObject {
 
     protected override void HandleDeath()
     {
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.BulletImpact, 1);
         base.HandleDeath();
     }
 }

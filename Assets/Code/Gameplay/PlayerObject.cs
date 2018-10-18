@@ -133,12 +133,15 @@ public class PlayerObject : GameplayObject {
                     {
                         case GunSelection.MACHINEGUN:
                             Instantiate(m_MachineGunBulletObjectPrefab, m_BulletSpawnPoint.position, m_BulletSpawnPoint.rotation, m_BulletStorage);
+                            AudioManager.Instance.PlaySFX(AudioManager.Instance.BulletFire_MachineGun, 1);
                             break;
                         case GunSelection.MISSILE:
                             Instantiate(m_MissileBulletObjectPrefab, m_BulletSpawnPoint.position, m_BulletSpawnPoint.rotation, m_BulletStorage);
+                            AudioManager.Instance.PlaySFX(AudioManager.Instance.BulletFire_Missile, 1);
                             break;
                         case GunSelection.ROCKET:
                             Instantiate(m_RocketBulletObjectPrefab, m_BulletSpawnPoint.position, m_BulletSpawnPoint.rotation, m_BulletStorage);
+                            AudioManager.Instance.PlaySFX(AudioManager.Instance.BulletFire_Rocket, 1);
                             break;
                         default:
                             Debug.Log("Unhandled gun selection: " + m_currentGunSelection);
@@ -146,10 +149,11 @@ public class PlayerObject : GameplayObject {
                     }
                     m_ammoCount--;
 
-                    if (m_ammoCount < 0)
+                    if (m_ammoCount <= 0)
                     {
                         // The player is now out of ammo
                         m_ammoCount = 0;
+                        AudioManager.Instance.PlaySFX(AudioManager.Instance.UI_NoAmmo,1);
                     }
 
                     // update UI

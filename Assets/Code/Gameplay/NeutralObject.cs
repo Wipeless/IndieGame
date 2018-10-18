@@ -90,6 +90,9 @@ public class NeutralObject : GameplayObject {
         if (!m_isDying)
         {
             m_isDying = true;
+
+            AudioManager.Instance.PlaySFX(AudioManager.Instance.Neutral_Death, 0.5f);
+
             Destroy(this.gameObject);
 
             ScoreManager.AddScore(-45);

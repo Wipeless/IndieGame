@@ -113,9 +113,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_MovementForce: 0
-  m_BulletFireRate: 3
-  m_BulletStrength: 100
-  m_FireForce: 2000
+  m_BulletType: 2
   m_Explosion: {fileID: 114113434535480586, guid: 7d7341e76369ba049966e0b450be112d,
     type: 2}
 --- !u!135 &135895318759936278

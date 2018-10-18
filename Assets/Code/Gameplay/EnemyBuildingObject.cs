@@ -86,6 +86,9 @@ public class EnemyBuildingObject : GameplayObject {
         if (!m_isDying)
         {
             m_isDying = true;
+
+            AudioManager.Instance.PlaySFX(AudioManager.Instance.EnemyBuilding_Death,0.5f);
+
             Destroy(this.gameObject);
 
             ScoreManager.AddScore(k_buildingPoints);

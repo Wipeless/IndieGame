@@ -110,6 +110,9 @@ public class EnemyObject : GameplayObject {
         if (!m_isDying)
         {
             m_isDying = true;
+
+            AudioManager.Instance.PlaySFX(AudioManager.Instance.Enemy_Death, 0.5f);
+
             Destroy(this.gameObject);
 
             ScoreManager.AddScore(k_EnemyPoints);

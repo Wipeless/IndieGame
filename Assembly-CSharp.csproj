@@ -61,6 +61,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Code\Audio\AudioManager.cs" />
     <Compile Include="Assets\Code\Gameplay\Bullet\BulletObject.cs" />
     <Compile Include="Assets\Code\Gameplay\Bullet\ExplosionObject.cs" />
     <Compile Include="Assets\Code\Gameplay\EnemyBuildingObject.cs" />

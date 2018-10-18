@@ -38,10 +38,15 @@ public class ExplosionObject : MonoBehaviour
             case ExplosionType.MISSILE:
                 m_ExplosionStrength = XMLReader_GameProperties.ExplosionStrength_Missile;
                 m_radius = XMLReader_GameProperties.ExplosionRadius_Missile;
+
+                AudioManager.Instance.PlaySFX(AudioManager.Instance.Explosion_Missile,1);
+
                 break;
             case ExplosionType.ROCKET:
                 m_ExplosionStrength = XMLReader_GameProperties.ExplosionStrength_Rocket;
                 m_radius = XMLReader_GameProperties.ExplosionRadius_Rocket;
+
+                AudioManager.Instance.PlaySFX(AudioManager.Instance.Explosion_Rocket,1);
                 break;
             default:
                 Debug.Log("Unhandled explosion type: " + m_ExplosionType);
