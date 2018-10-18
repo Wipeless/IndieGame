@@ -30,7 +30,7 @@ public class TankObject : GameplayObject
     protected override void HandleBirth()
     {
         base.HandleBirth();
-        m_health = 4000;
+        m_health = 10000;
     }
 
     protected override void HandleMovement()
