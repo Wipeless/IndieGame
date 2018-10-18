@@ -227,6 +227,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 398250c3b08672c43a01075e4bd4b4ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CurrentEnemyGunType: 0
   m_BulletObjectPrefab: {fileID: 114422656989173530, guid: 0f75ba3ac16c6bf4f933d74799e80758,
     type: 2}
   m_BulletStorage: {fileID: 4391591042073398}
@@ -244,5 +245,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 304d8e29248a92648b1bbdd4cb9ce93b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_DeathExplosion: {fileID: 114721300748201914, guid: 18036a9b7c5f56d4bbc4b9f8d37007ce,
+    type: 2}
   m_MovementForce: 0
   m_EnemyGun: {fileID: 114408111699239596}

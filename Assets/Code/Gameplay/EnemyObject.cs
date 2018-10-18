@@ -113,6 +113,11 @@ public class EnemyObject : GameplayObject {
 
             AudioManager.Instance.PlaySFX(AudioManager.Instance.Enemy_Death, 0.5f);
 
+            for (int deathExplosionCount = 0; deathExplosionCount < 30; deathExplosionCount++)
+            {
+                Instantiate(m_DeathExplosion, transform.position, Quaternion.identity, null);
+            }
+
             Destroy(this.gameObject);
 
             ScoreManager.AddScore(k_EnemyPoints);

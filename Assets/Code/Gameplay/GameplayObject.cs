@@ -9,6 +9,7 @@ public abstract class GameplayObject : MonoBehaviour {
     protected float m_timeOfBirth;
     protected bool m_isDying = false;
 
+    public DeatExplosion m_DeathExplosion;
     public float m_MovementForce;
 
 	// Use this for initialization

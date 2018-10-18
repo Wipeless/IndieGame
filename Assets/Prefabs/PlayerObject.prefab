@@ -407,7 +407,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed674b9bf7f6532479b04886fc3377ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_DeathExplosion: {fileID: 114721300748201914, guid: 18036a9b7c5f56d4bbc4b9f8d37007ce,
+    type: 2}
   m_MovementForce: 1000
+  m_CurrentGunSelection: 0
   m_MachineGunBulletObjectPrefab: {fileID: 114097331621640990, guid: 94c61165de6a6a946aa23c713c7fcc87,
     type: 2}
   m_MissileBulletObjectPrefab: {fileID: 114895452966501446, guid: 0973c074ea558f347adedb2d2e1d469f,

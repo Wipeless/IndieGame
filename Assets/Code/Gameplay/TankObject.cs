@@ -30,7 +30,7 @@ public class TankObject : GameplayObject
     protected override void HandleBirth()
     {
         base.HandleBirth();
-        m_health = 20000;
+        m_health = 4000;
     }
 
     protected override void HandleMovement()
@@ -83,6 +83,12 @@ public class TankObject : GameplayObject
             m_isDying = true;
 
             AudioManager.Instance.PlaySFX(AudioManager.Instance.EnemyTank_Death, 0.5f);
+
+            for (int deathExplosionCount = 0; deathExplosionCount < 200; deathExplosionCount++)
+            {
+                Instantiate(m_DeathExplosion, transform.position, Quaternion.identity, null);
+            }
+
             Destroy(this.gameObject);
 
             ScoreManager.AddScore(k_enemyPoints);
