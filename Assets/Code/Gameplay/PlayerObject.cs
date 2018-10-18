@@ -4,15 +4,14 @@ using UnityEngine;
 
 public class PlayerObject : GameplayObject {
 
-    private enum GunSelection
+    public enum GunSelection
     {
         MACHINEGUN = 0,
         ROCKET,
         MISSILE,
     }
 
-    private GunSelection m_currentGunSelection = GunSelection.MACHINEGUN;
-
+    public GunSelection m_CurrentGunSelection = GunSelection.MACHINEGUN;
     public BulletObject m_MachineGunBulletObjectPrefab;
     public BulletObject m_MissileBulletObjectPrefab;
     public BulletObject m_RocketBulletObjectPrefab;
@@ -79,17 +78,17 @@ public class PlayerObject : GameplayObject {
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            m_currentGunSelection = GunSelection.MACHINEGUN;
+            m_CurrentGunSelection = GunSelection.MACHINEGUN;
             UpdateFireRate();
         }
         else if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            m_currentGunSelection = GunSelection.ROCKET;
+            m_CurrentGunSelection = GunSelection.ROCKET;
             UpdateFireRate();
         }
         else if (Input.GetKeyDown(KeyCode.Alpha3))
         {
-            m_currentGunSelection = GunSelection.MISSILE;
+            m_CurrentGunSelection = GunSelection.MISSILE;
             UpdateFireRate();
         }
     }
@@ -99,7 +98,7 @@ public class PlayerObject : GameplayObject {
     /// </summary>
     private void UpdateFireRate()
     {
-        switch (m_currentGunSelection)
+        switch (m_CurrentGunSelection)
         {
             //TODO: use the fire rate from the actual bullet being fired instead of looking at the XML doc
             case GunSelection.MACHINEGUN:
@@ -112,7 +111,7 @@ public class PlayerObject : GameplayObject {
                 m_fireRateLimit = XMLReader_GameProperties.BulletFireRate_Rocket;
                 break;
             default:
-                Debug.Log("Unhandled gun selection: " + m_currentGunSelection);
+                Debug.Log("Unhandled gun selection: " + m_CurrentGunSelection);
                 break;
         }
     }
@@ -129,7 +128,7 @@ public class PlayerObject : GameplayObject {
                 {
                     m_fireRateTimer = Time.time;
 
-                    switch (m_currentGunSelection)
+                    switch (m_CurrentGunSelection)
                     {
                         case GunSelection.MACHINEGUN:
                             Instantiate(m_MachineGunBulletObjectPrefab, m_BulletSpawnPoint.position, m_BulletSpawnPoint.rotation, m_BulletStorage);
@@ -144,7 +143,7 @@ public class PlayerObject : GameplayObject {
                             AudioManager.Instance.PlaySFX(AudioManager.Instance.BulletFire_Rocket, 1);
                             break;
                         default:
-                            Debug.Log("Unhandled gun selection: " + m_currentGunSelection);
+                            Debug.Log("Unhandled gun selection: " + m_CurrentGunSelection);
                             break;
                     }
                     m_ammoCount--;

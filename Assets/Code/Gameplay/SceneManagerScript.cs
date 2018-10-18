@@ -81,6 +81,7 @@ public class SceneManagerScript : MonoBehaviour {
         HandleScore();
         HandleFuel();
         HandleRemainingTime();
+        HandleGunSelection();
     }
 
     #region Public
@@ -135,6 +136,12 @@ public class SceneManagerScript : MonoBehaviour {
         }
 
         m_GameplayScreen.SetRemainingTime((int)(remainingTime / 60), (int)(remainingTime % 60));
+    }
+
+    private void HandleGunSelection()
+    {
+        PlayerObject.GunSelection selection = m_playerObject.m_CurrentGunSelection;
+        m_GameplayScreen.SetPlayerGunName(selection);
     }
 
     #endregion
