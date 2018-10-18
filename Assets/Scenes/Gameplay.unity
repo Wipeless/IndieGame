@@ -441,7 +441,7 @@ RectTransform:
   - {fileID: 1775002711}
   - {fileID: 1136278581}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -608,6 +608,7 @@ GameObject:
   m_Component:
   - component: {fileID: 898304293}
   - component: {fileID: 898304294}
+  - component: {fileID: 898304295}
   m_Layer: 0
   m_Name: SceneManager
   m_TagString: Untagged
@@ -649,11 +650,25 @@ MonoBehaviour:
     type: 2}
   m_NeutralBuildingObjectPrefab: {fileID: 114792485641498118, guid: 84d74d94a3da4bd45aedada08683350d,
     type: 2}
+  m_TankObjectPrefab: {fileID: 114460142945975218, guid: 413784465b29b6b4a96b340923c7d32e,
+    type: 2}
   m_NeutralObjectStorage: {fileID: 1283997858}
   m_EnemyObjectStorage: {fileID: 1357262666}
   m_EnemyBuildingObjectStorage: {fileID: 1479177645}
   m_NeutralBuildingObjectStorage: {fileID: 1432736619}
+  m_TankObjectStorage: {fileID: 1452372395}
   m_GameplayScreen: {fileID: 666436723}
+--- !u!114 &898304295
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 898304292}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7762341184b3e4f9b035f84fdec7ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &933930347
 GameObject:
   m_ObjectHideFlags: 0
@@ -920,7 +935,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1283997857
 GameObject:
@@ -1079,7 +1094,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1432736618
 GameObject:
@@ -1107,7 +1122,35 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1452372394
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1452372395}
+  m_Layer: 0
+  m_Name: TankStorage
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1452372395
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1452372394}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 8.26696, y: 3.8860388, z: 1.3978391}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1479177644
 GameObject:

@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<gameProperties>
+  <Enemy 
+    health ="100"
+  />
+  <EnemyBuilding 
+    health ="3000"
+  />
+  <Neutral 
+    health ="100"
+  />
+  <Bullet_MachineGun
+	strength = "100"
+	fireRate = "0.1"
+	fireForce = "3000"
+	lifeSpan = "1"
+  />
+  <Bullet_Rocket
+	strength = "10"
+	fireRate = "0.4"
+	fireForce = "2500"
+	lifeSpan = "1"
+  />
+  <Bullet_Missile
+	strength = "10"
+	fireRate = "4"
+	fireForce = "2000"
+	lifeSpan = "1"
+  />
+  <Explosion_Rocket
+	strength = "300"
+	radius = "5"
+  />
+  <Explosion_Missile
+	strength = "1000"
+	radius = "15"
+  />
+</gameProperties>

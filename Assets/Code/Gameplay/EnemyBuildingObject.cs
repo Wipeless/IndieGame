@@ -6,8 +6,12 @@ public class EnemyBuildingObject : GameplayObject {
 
     public EnemyGunScript m_EnemyGun;
 
+
+    private bool m_explosionDeath;
     private bool m_getsBonus;
 
+    private const int k_buildingPoints = 300;
+    private const int k_explosionBonusPoints = 5;
     private const int k_bonusPoints = 100;
 
 	// Use this for initialization
@@ -67,6 +71,7 @@ public class EnemyBuildingObject : GameplayObject {
 
                 if (m_health <= 0)
                 {
+                    m_explosionDeath = true;
                     HandleDeath();
                 }
                 break;
@@ -78,7 +83,8 @@ public class EnemyBuildingObject : GameplayObject {
 
     protected override void HandleBirth()
     {
-        m_health = 3000;
+        m_health = XMLReader_GameProperties.EnemyHealth;
+
         base.HandleBirth();
     }
 
@@ -89,7 +95,11 @@ public class EnemyBuildingObject : GameplayObject {
             m_isDying = true;
             Destroy(this.gameObject);
 
-            ScoreManager.AddScore(300);
+            ScoreManager.AddScore(k_buildingPoints);
+            if (m_explosionDeath)
+            {
+                ScoreManager.AddScore(k_explosionBonusPoints);
+            }
             if (m_getsBonus)
             {
                 ScoreManager.AddScore(k_bonusPoints);

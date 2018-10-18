@@ -113,9 +113,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_MovementForce: 0
-  m_BulletFireRate: 0.1
-  m_BulletStrength: 100
-  m_FireForce: 3000
+  m_BulletType: 0
+  m_FireForce: 3
   m_Explosion: {fileID: 0}
 --- !u!135 &135711410458010360
 SphereCollider:
